@@ -1,25 +1,19 @@
 #!/usr/bin/env python3
+"""A Basic Flask app.
 """
-A basic Flask application with a single route that renders an HTML page.
+from flask import Flask, render_template
 
-This module sets up a Flask application and serves an index page with a title
-and a header.
-"""
 
-from flask import Flask, render_template, Response
-from typing import Any
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-app: Flask = Flask(__name__)
 
 @app.route('/')
-def index() -> Response:
-    """
-    Render the index.html template.
-
-    Returns:
-        Response: The rendered HTML page.
+def get_index() -> str:
+    """The home/index page.
     """
     return render_template('0-index.html')
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
